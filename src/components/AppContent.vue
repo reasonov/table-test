@@ -66,11 +66,13 @@ export default {
 
   created() {
     this.load();
+    this.takeData();
   },
 
   methods: {
     ...mapActions([
       'load',
+      'takeData',
     ]),
   },
 };

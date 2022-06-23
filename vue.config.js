@@ -5,6 +5,7 @@ const webpack = require('webpack');
 const { NODE_ENV } = process.env;
 
 module.exports = {
+  publicPath: '/table-test/',
   devServer: {
     host: 'localhost',
     port: '8088',

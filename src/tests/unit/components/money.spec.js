@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils';
 import Money from '@/components/UI/Money.vue';
 
 const testCases = [
-  ['asd', '', undefined],
+  ['asd', '', null],
   ['am100', '100', 100],
   [',1105', '1 105', 1105],
   ['20asd000', '20 000', 20000],

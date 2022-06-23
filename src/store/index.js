@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import api from '@/api';
+import getPayments from '@/mocks/getPayments';
 
 Vue.use(Vuex);
 
@@ -25,6 +26,12 @@ export default new Vuex.Store({
         }
       });
     },
+    setData(state, value) {
+      value.forEach((item) => {
+        state.data.push(item);
+      });
+      console.log(state.data);
+    },
   },
 
   actions: {
@@ -42,6 +49,15 @@ export default new Vuex.Store({
         alert(e?.message);
       } finally {
         commit('setState', { isLoading: false });
+      }
+    },
+    async takeData({ commit }) {
+      try {
+        getPayments().then((result) => { commit('setData', result.data); });
+      } catch (e) {
+        console.log(e);
+      } finally {
+        console.log('asd');
       }
     },
   },
