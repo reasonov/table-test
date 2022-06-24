@@ -55,11 +55,7 @@ export default {
       this.valueInput = arr.join('');
     },
     replaceComma() {
-      const arr = this.valueInput.split('');
-      if (this.valueInput.includes(',')) {
-        arr[[this.valueInput.indexOf(',')]] = '.';
-        this.valueInput = arr.join('');
-      }
+      this.valueInput = formatMoney.methods.replaceComma(this.valueInput);
     },
     deleteNonNumber() {
       const arr = this.valueInput.split('');

@@ -19,7 +19,7 @@
           <p class="header__text">Money</p>
         </div>
       </div>
-      <div class="table__main" v-for="(item, index) in paginationPage" :key="index">
+      <div class="table__main" v-for="(item, index) in filteredPage" :key="index">
         <div class="table__item">
           <p class="item__text">{{ item.id }}</p>
         </div>
@@ -87,6 +87,9 @@ export default {
       });
       return arr;
     },
+    filteredPage() {
+      return this.paginationPage.filter((i) => Number(i.money) >= Number(this.moneyFilter));
+    },
   },
   methods: {
     filterDate(item) {
@@ -98,7 +101,8 @@ export default {
       return date;
     },
     filteredMoney(item) {
-      return formatMoney.methods.justFormat(item);
+      const localeItem = formatMoney.methods.replaceComma(String(item));
+      return formatMoney.methods.justFormat(localeItem);
     },
   },
   // watch: {

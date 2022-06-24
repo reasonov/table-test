@@ -27,10 +27,20 @@ export default new Vuex.Store({
       });
     },
     setData(state, value) {
+      const arr = [];
       value.forEach((item) => {
         state.data.push(item);
+        arr.push(item);
       });
-      console.log(state.data);
+      localStorage.setItem('data', JSON.stringify(arr));
+      console.log('data updated');
+    },
+    cachedCheck(state) {
+      if (localStorage.getItem('data')) {
+        state.isCached = true;
+      } else {
+        state.isCached = false;
+      }
     },
   },
 

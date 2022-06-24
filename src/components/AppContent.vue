@@ -10,14 +10,14 @@
           <p>You can clear cache and load data again.</p>
         </template>
         <template #footer>
-          <ui-button type="primary">
+          <ui-button type="primary" @click="updateData">
             Clear cache
           </ui-button>
         </template>
       </ui-alert>
 
       <data-table
-        :rows="data"
+        :rows="currentData"
         :columns="columns"
       />
     </template>
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapState, mapMutations } from 'vuex';
 
 export default {
 
@@ -62,11 +62,18 @@ export default {
       'isCached',
       'data',
     ]),
+    currentData() {
+      if (localStorage.getItem('data')) {
+        return JSON.parse(localStorage.getItem('data'));
+      }
+      return this.data;
+    },
   },
 
   created() {
     this.load();
     this.takeData();
+    this.cachedCheck();
   },
 
   methods: {
@@ -74,6 +81,12 @@ export default {
       'load',
       'takeData',
     ]),
+    ...mapMutations([
+      'cachedCheck',
+    ]),
+    updateData() {
+      this.takeData();
+    },
   },
 };
 </script>
