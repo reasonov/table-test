@@ -20,16 +20,16 @@
         </div>
       </div>
       <div class="table__main" v-for="(item, index) in filteredPage" :key="index">
-        <div class="table__item">
+        <div class="table__item table__item1">
           <p class="item__text">{{ item.id }}</p>
         </div>
-        <div class="table__item">
+        <div class="table__item table__item2">
           <p class="item__text">{{ filterDate(item.date) }}</p>
         </div>
-        <div class="table__item">
+        <div class="table__item table__item3">
           <p class="item__text">{{ item.name }}</p>
         </div>
-        <div class="table__item">
+        <div class="table__item table__item4">
           <p class="item__text">{{ filteredMoney(item.money) }}</p>
         </div>
       </div>
@@ -116,7 +116,7 @@ export default {
 <style scoped>
 
 .table {
-  margin-top: 20px;
+  margin: 20px 0;
 }
 
 .table__header {
@@ -154,5 +154,53 @@ export default {
 
 .item__text {
   text-align: center;
+}
+
+@media (max-width: 768px) {
+  .table__header {
+    display: none;
+  }
+
+  .table__main {
+    display: block;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border: 1px solid #000;
+  }
+
+  .table__item {
+    position: relative;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    border: none!important;
+  }
+  .table__item1::before {
+    content: 'ID';
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .table__item2::before {
+    content: 'Date';
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .table__item3::before {
+    content: 'Name';
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .table__item4::before {
+    content: 'Money';
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .item__text {
+    text-align: left;
+  }
 }
 </style>
