@@ -36,7 +36,7 @@ export default new Vuex.Store({
       console.log('data updated');
     },
     cachedCheck(state) {
-      if (localStorage.getItem('data')) {
+      if (localStorage.getItem('data').length > 10) {
         state.isCached = true;
       } else {
         state.isCached = false;
@@ -69,6 +69,10 @@ export default new Vuex.Store({
       } finally {
         console.log('asd');
       }
+    },
+    removeData({ commit }) {
+      localStorage.setItem('data', '');
+      commit('cachedCheck');
     },
   },
 });

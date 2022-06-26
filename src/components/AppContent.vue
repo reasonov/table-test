@@ -80,12 +80,22 @@ export default {
     ...mapActions([
       'load',
       'takeData',
+      'removeData',
     ]),
     ...mapMutations([
       'cachedCheck',
     ]),
     updateData() {
+      this.removeData();
       this.takeData();
+    },
+  },
+  watch: {
+    data: {
+      handler() {
+        this.cachedCheck();
+      },
+      deep: true,
     },
   },
 };
